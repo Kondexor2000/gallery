@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gallery</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    {% load static %}
+    <script src="{% static 'scripts.js' %}"></script>
+</head>
+<body>
+    <h1>Gallery</h1>
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}! <a href="{% url 'logout_view' %}">Logout</a></p>
+        <p><a href="{% url 'add_photo' %}">Add Photo</a></p>
+        {% for photo in photos %}
+            <div>
+                <h2>{{ photo.title }}</h2>
+                <img src="{{ photo.image.url }}" alt="{{ photo.title }}">
+                <a href="{% url 'delete_photo' photo.id %}">Delete</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p><a href="{% url 'login_existing' %}">Login</a> or <a href="{% url 'signup' %}">Sign Up</a> to view the gallery.</p>
+    {% endif %}
+</body>
+</html>
