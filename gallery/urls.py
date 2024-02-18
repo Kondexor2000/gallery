@@ -23,12 +23,14 @@ from django.conf.urls.static import static
 from . import settings
 
 urlpatterns = [
-    path('', views.gallery, name='gallery'),
-    path('add_photo/', views.add_photo, name='add_photo'),
-    path('delete_photo/<int:photo_id>/', views.delete_photo, name='delete_photo'),
     path('login/', views.login_existing, name='login_existing'),
     path('signup/', views.signup, name='signup'),
-    path('logout/', views.logout_view, name='logout_view'),
+    path('logout/', views.logout_view, name='logout'),
+    path('reservations/', views.reservations, name='reservations'),
+    path('cancelled_reservations/', views.cancelled_reservations, name='cancelled_reservations'),
+    path('notifications/', views.notifications, name='notifications'),
+    path('add_photo/', views.add_photo, name='add_photo'),
+    path('delete_photo/<int:reservation_id>/', views.delete_photo, name='delete_photo'),
 ]
 
 if settings.DEBUG:
